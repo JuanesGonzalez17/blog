@@ -3,14 +3,14 @@ const express = require("express");
 const router = express.Router();
 
 //instanciamos el controlador correspondiente
-const comentarioCtr = require("../controllers/comentarios");
+const categoriaCtr = require("../controllers/categorias");
 
 //rutas que entregará el modulo producto
 
-router.get("/comentario/listartodos", comentarioCtr.listartodos);
-router.post("/comentario/nuevo", comentarioCtr.agregarComentario);
-router.delete("/comentario/borrarporid/:id", comentarioCtr.borrarporid);
-router.put("/comentario/editarporid/:id", comentarioCtr.actualizarporid);
+router.get("/categoria/listartodos", categoriaCtr.listartodos);
+router.post("/categoria/nuevo", categoriaCtr.agregarCategoria);
+router.delete("/categoria/borrarporid/:id", categoriaCtr.borrarporid);
+router.put("/categoria/editarporid/:id", categoriaCtr.actualizarporid);
 
 //....
 module.exports = router;
