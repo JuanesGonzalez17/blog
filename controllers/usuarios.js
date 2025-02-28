@@ -53,6 +53,41 @@ const registro = async (req, res) => {
     });
   }
 };
+const editar = async (req, res) => {
+  //recibe el parámetro de la consulta
+  let id = req.params.id;
+  let datos = {
+    nombre: req.body.nombre,
+    foto: req.body.foto,
+    email: req.body.email,
+    fechaNace: req.body.fechaNace,
+    telefono: req.body.telefono,
+    esAdmin: req.body.esAdmin,
+  };
+
+  const usuarioexiste = await Usuario.findOne({ email: datos.email });
+
+  if (usuarioexiste) {
+    return res.send({
+      estado: false,
+      mensaje: "el correo ya se encuentra registrado a otro usuario",
+    });
+  }
+
+  try {
+    let consulta = await Usuario.findByIdAndUpdate(id, datos);
+    return res.send({
+      estado: true,
+      mensaje: "usuario editado exitosamente",
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: `error ${error}`,
+    });
+  }
+};
 
 const login = async (req, res) => {
   let usuarioexiste = await Usuario.findOne({ email: req.body.email });
@@ -90,4 +125,4 @@ const login = async (req, res) => {
     });
   }
 };
-module.exports = { listartodos, registro, login };
+module.exports = { listartodos, registro, editar, login };

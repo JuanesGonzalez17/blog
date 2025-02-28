@@ -4,31 +4,27 @@ const { Schema, model, Collection } = require("mongoose");
 
 //creamos el schema
 
-const comentarioSchema = Schema(
+const entradaSchema = Schema(
   {
-    usuario_id: {
-      type: Number,
+    titulo: {
+      type: String,
       required: true,
     },
-    entrada_id: {
-      type: Number,
+    imagen: {
+      type: String,
       required: true,
     },
     detalle: {
       type: String,
       required: true,
     },
-    like: {
-      type: Number,
-      default: 0,
-    },
-    dislike: {
+    categoria_id: {
       type: Number,
       default: 0,
     },
   },
   {
-    Collection: "comentario",
+    Collection: "entrada",
   }
 );
-module.exports = model("Comentario", comentarioSchema);
+module.exports = model("Entrada", entradaSchema);
