@@ -12,15 +12,18 @@ const entradaSchema = Schema(
     },
     imagen: {
       type: String,
-      required: true,
     },
     detalle: {
       type: String,
       required: true,
     },
     categoria_id: {
-      type: Number,
+      type: String,
       default: 0,
+    },
+    fecha: {
+      type: Date,
+      default: Date.now(),
     },
   },
   {
