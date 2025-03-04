@@ -12,6 +12,7 @@ const usuarioSchema = Schema(
     },
     foto: {
       type: String,
+      default: 'image.jpg',
     },
     email: {
       type: String,

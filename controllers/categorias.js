@@ -16,7 +16,24 @@ const listartodos = async (req, res) => {
     });
   }
 };
-
+//buscar por id o por otro parámetro
+const buscarporid = async (req, res) => {
+  //recibimos el parámetro por el cual debo buscar y eliminar
+  let id = req.params.id;
+  try {
+    //logica de buscar y mostrar el resultado del query
+    let consulta = await Categoria.findById(id).exec();
+    return res.send({
+      estado: true,
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: `Ha ocurrido un error en la consulta: ${error}`,
+    });
+  }
+};
 const agregarCategoria = async (req, res) => {
   let datos = {
     nombre: req.body.nombre,
@@ -79,4 +96,4 @@ const borrarporid = async (req, res) => {
     });
   }
 };
-module.exports = { listartodos, agregarCategoria, actualizarporid, borrarporid};
+module.exports = { listartodos, buscarporid,agregarCategoria, actualizarporid, borrarporid};

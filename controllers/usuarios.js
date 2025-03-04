@@ -18,7 +18,24 @@ const listartodos = async (req, res) => {
     });
   }
 };
-
+//buscar por id o por otro parámetro
+const buscarporid = async (req, res) => {
+  //recibimos el parámetro por el cual debo buscar y eliminar
+  let id = req.params.id;
+  try {
+    //logica de buscar y mostrar el resultado del query
+    let consulta = await Usuario.findById(id).exec();
+    return res.send({
+      estado: true,
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: `Ha ocurrido un error en la consulta: ${error}`,
+    });
+  }
+};
 const registro = async (req, res) => {
   let datos = {
     nombre: req.body.nombre,
@@ -29,7 +46,6 @@ const registro = async (req, res) => {
     telefono: req.body.telefono,
     esAdmin: req.body.esAdmin,
   };
-
   const usuarioexiste = await Usuario.findOne({ email: datos.email });
 
   if (usuarioexiste) {
@@ -125,4 +141,4 @@ const login = async (req, res) => {
     });
   }
 };
-module.exports = { listartodos, registro, editar, login };
+module.exports = { listartodos, buscarporid, registro, editar, login };

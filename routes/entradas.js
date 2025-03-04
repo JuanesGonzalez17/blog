@@ -11,6 +11,6 @@ router.get("/entrada/listartodos", entradaCtr.listartodos);
 router.post("/entrada/nuevo", entradaCtr.agregarEntrada);
 router.put("/entrada/editarporid/:id", entradaCtr.actualizarporid);
 router.delete("/entrada/borrarporid/:id", entradaCtr.borrarporid);
-
+router.put("/entrada/buscarporid/:id", entradaCtr.buscarporid);
 //....
 module.exports = router;

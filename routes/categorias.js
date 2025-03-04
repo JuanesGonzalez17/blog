@@ -11,6 +11,7 @@ router.get("/categoria/listartodos", categoriaCtr.listartodos);
 router.post("/categoria/nuevo", categoriaCtr.agregarCategoria);
 router.delete("/categoria/borrarporid/:id", categoriaCtr.borrarporid);
 router.put("/categoria/editarporid/:id", categoriaCtr.actualizarporid);
+router.put("/categoria/buscarporid/:id", categoriaCtr.buscarporid);
 
 //....
 module.exports = router;
