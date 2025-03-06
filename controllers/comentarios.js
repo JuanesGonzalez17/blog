@@ -19,8 +19,8 @@ const listartodos = async (req, res) => {
 
 const agregarComentario = async (req, res) => {
   let datos = {
-    usuario: req.body.usuario,
-    entrada: req.body.entrada,
+    usuario_id: req.body.usuario_id,
+    entrada_id: req.body.entrada_id,
     detalle: req.body.detalle,
   };
 
@@ -53,6 +53,24 @@ const actualizarporid = async (req, res) => {
     return res.send({
       estado: true,
       mensaje: "Actualización exitosa!",
+      consulta,
+    });
+  } catch (error) {
+    return res.send({
+      estado: false,
+      mensaje: `Ha ocurrido un error en la consulta: ${error}`,
+    });
+  }
+};
+//buscar por id o por otro parámetro
+const buscarporid = async (req, res) => {
+  //recibimos el parámetro por el cual debo buscar y eliminar
+  let id = req.params.id;
+  try {
+    //logica de buscar y mostrar el resultado del query
+    let consulta = await Comentario.findById(id).exec();
+    return res.send({
+      estado: true,
       consulta,
     });
   } catch (error) {
@@ -127,4 +145,4 @@ const borrarporid = async (req, res) => {
     });
   }
 };
-module.exports = { listartodos, agregarComentario, actualizarporid, like, dislike, borrarporid};
+module.exports = { listartodos, agregarComentario, buscarporid, actualizarporid, like, dislike, borrarporid};

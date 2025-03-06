@@ -9,6 +9,7 @@ const comentarioCtr = require("../controllers/comentarios");
 
 router.get("/comentario/listartodos", comentarioCtr.listartodos);
 router.post("/comentario/nuevo", comentarioCtr.agregarComentario);
+router.get("/comentario/buscarporid/:id", comentarioCtr.buscarporid);
 router.put("/comentario/like/:id", comentarioCtr.like);
 router.delete("/comentario/borrarporid/:id", comentarioCtr.borrarporid);
 router.put("/comentario/dislike/:id", comentarioCtr.dislike);

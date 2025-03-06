@@ -120,7 +120,7 @@ const login = async (req, res) => {
     const token = jwt.sign(
       {
         //datos a codificar en el token
-        userId: usuarioexiste.id,
+        userId: usuarioexiste._id,
         isAdmin: usuarioexiste.esAdmin,
       },
       //salt de la codificada o hashing o encriptado
@@ -133,6 +133,9 @@ const login = async (req, res) => {
     return res.send({
       estado: true,
       mensaje: "Ingreso exitoso al sistema.",
+      usuario: usuarioexiste._id,
+      isAdmin: usuarioexiste.esAdmin,
+      token,
     });
   } else {
     return res.send({

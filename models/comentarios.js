@@ -7,16 +7,20 @@ const { Schema, model, Collection } = require("mongoose");
 const comentarioSchema = Schema(
   {
     usuario_id: {
-      type: Number,
+      type: String,
       required: true,
     },
     entrada_id: {
-      type: Number,
+      type: String,
       required: true,
     },
     detalle: {
       type: String,
       required: true,
+    },
+    fecha: {
+      type: Date,
+      default: Date.now(),
     },
     like: {
       type: Number,
